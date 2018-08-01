@@ -1,17 +1,14 @@
 version: '2'
 services:
     web:
-      image: nginx:latest
+      build: ./www/python
       ports:
-        - "8080:80"
+        - "5000:5000"
       volumes:
-        - ./www:/www
-        - ./site.conf:/etc/nginx/conf.d/site.conf
+        - ./www/python:/code
       links:
-        - php
-        - mongodb
         - redisserver
-        - mysql
+        - mongodb
     php:
       image: php:7-fpm
       volumes:
